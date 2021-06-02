@@ -1,0 +1,1 @@
+# SamayGnaw app for tailors
