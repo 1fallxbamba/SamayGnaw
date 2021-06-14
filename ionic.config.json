@@ -1,5 +1,7 @@
 {
   "name": "samaygnaw",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
