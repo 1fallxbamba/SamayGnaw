@@ -24,3 +24,41 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+/*
+Colors : #f86f05, #0a8bb2, #023d69
+*/
+
+ion-content {
+  --background: #fafafa;
+}
+
+ion-toolbar {
+  --background: #fafafa;
+}
+
+ion-button {
+  --background-activated: #0a8bb2;
+  --background-focused: #023d69;
+  --background-hover: #0a8bb2
+}
+
+.gnaw-word {
+  font-style: italic;
+}
+
+.sg-btn-primary {
+  --background: #f86f05;
+}
+
+.sg-btn-secondary {
+  --background: #d44206;
+}
+
+.sg-btn-tertiary {
+  --background: #023d69;
+}
+
+.sg-btn-fourth {
+  --background: #0a8bb2;
+}

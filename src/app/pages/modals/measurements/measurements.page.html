@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-back-button defaultHref="client" (click)="goBack()" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vos mesures </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="measurements" >
+    <ion-item>
+      <ion-label> Cou : <span>{{measurements.cou}}</span>   </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Epaule : <span>{{measurements.epaule}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Poitrine : <span>{{measurements.poitrine}}</span>   </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Ceinture : <span>{{measurements.ceinture}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Tour de bras : <span>{{measurements.tourBras}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Tour de Poignet : <span>{{measurements.tourPoignet}}</span>   </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Longueur Manches : <span>{{measurements.longManche}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Longueur Pantalon : <span>{{measurements.longPant}} </span> </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Longueur Taille : <span>{{measurements.longTaille}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Longueur Caftan : <span>{{measurements.longCaftan}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Tour de Cuisse : <span>{{measurements.tourCuisse}}</span>  </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> Tour de Cheville : <span>{{measurements.tourCheville}}</span>  </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,15 +1,52 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Accueil
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-text>
+    <div style="text-align: center">
+      <img src="https://via.placeholder.com/150" />
+
+    </div>
+    <h1>
+      Bienvenue sur
+      <span style="color: #023d69; font-style: italic">SamayGnaw</span>
+    </h1>
+    <p>
+      Choisissez votre profil et accédez à votre espace.
+    </p>
+  </ion-text>
+
+  <div class="actions">
+    <div class="login-buttons">
+      <ion-button class="signup-btn2" expand="block">
+        Je suis un salon
+      </ion-button>
+      <!-- <ion-button>
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-label>Facebook</ion-label>
+      </ion-button> -->
+      <!-- <ion-button>
+        <ion-icon name="logo-google"></ion-icon>
+        <ion-label>Google</ion-label>
+      </ion-button> -->
+    </div>
+    <div class="separator">
+      <span>ou</span>
+      <span class="line left"></span>
+      <span class="line right"></span>
+    </div>
+    <ion-button class="signup-btn" expand="block" routerLink="/client">Je suis un client</ion-button>
+    <p class="login">Pas de compte ? <a>Créez en un</a></p>
+  </div>
+
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Accueil</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -21,5 +58,5 @@
 
     <ion-button color="primary" (click)="seeMeasurements()" > Measurements  </ion-button>
 
-  </div>
+  </div> -->
 </ion-content>
