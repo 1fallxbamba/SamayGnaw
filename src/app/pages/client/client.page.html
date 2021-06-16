@@ -15,12 +15,16 @@
 
   <div class="main-btns">
     <ion-button
-    (click)="showModal()"
-    class="sg-btn-primary"
-    expand="block"
+      (click)="showMeasurementsModal()"
+      class="sg-btn-primary"
+      expand="block"
       >Consulter mes mesures</ion-button
     >
-    <ion-button class="sg-btn-primary" expand="block">
+    <ion-button
+      (click)="showGnawsModal()"
+      class="sg-btn-primary"
+      expand="block"
+    >
       Consulter tous mes
       <span class="gnaw-word" style="margin-left: 3px"> gnaws </span>
     </ion-button>

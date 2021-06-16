@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
-import { MeasurementsPage } from '../modals/measurements/measurements.page';
-
 import { FetcherService } from '../../services/fetcher.service';
+import { MeasurementsPage } from '../modals/measurements/measurements.page';
+import { GnawsPage } from '../modals/gnaws/gnaws.page';
 
 
 @Component({
@@ -20,10 +20,19 @@ export class ClientPage implements OnInit {
   ngOnInit() {
   }
 
-  async showModal() {
+  async showMeasurementsModal() {
 
     const modal = await this.modal.create({
       component: MeasurementsPage
+    });
+
+    return await modal.present();
+  }
+
+  async showGnawsModal() {
+
+    const modal = await this.modal.create({
+      component: GnawsPage
     });
 
     return await modal.present();
