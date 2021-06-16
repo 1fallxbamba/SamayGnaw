@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'measurements',
     loadChildren: () => import('./pages/modals/measurements/measurements.module').then( m => m.MeasurementsPageModule)
   },
+  {
+    path: 'gnaws',
+    loadChildren: () => import('./pages/modals/gnaws/gnaws.module').then( m => m.GnawsPageModule)
+  },
+  {
+    path: 'gnaw',
+    loadChildren: () => import('./pages/modals/gnaw/gnaw.module').then( m => m.GnawPageModule)
+  },
 ];
 
 @NgModule({

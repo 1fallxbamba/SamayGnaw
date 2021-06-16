@@ -15,18 +15,6 @@ export class HomePage {
 
   constructor(private fetcher: FetcherService) { }
 
-  seeGnaws() {
 
-    this.fetcher.getGnaws('77SGS-1111902111').subscribe((data) => {
-      console.log(data);
-    });
-
-  }
-
-  seeMeasurements() {
-    this.fetcher.getMeasurements('SGC4-187').subscribe((data) => {
-      console.log(data);
-    });
-  }
 
 }

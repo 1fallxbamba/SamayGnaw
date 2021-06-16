@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ModalController } from '@ionic/angular';
+
+import { FetcherService } from '../../services/fetcher.service';
+import { GnawsPage } from '../modals/gnaws/gnaws.page';
+
 
 @Component({
   selector: 'app-saloon',
@@ -7,9 +14,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaloonPage implements OnInit {
 
-  constructor() { }
+  constructor(public modal: ModalController, public router: Router) { }
 
   ngOnInit() {
+  }
+
+  async showGnawsModal() {
+
+    const modal = await this.modal.create({
+      component: GnawsPage,
+      componentProps : {
+        displayType : 'saloon'
+      }
+    });
+
+    return await modal.present();
+  }
+
+  logout() {
+    this.router.navigate(['login']);
   }
 
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 
 import { FetcherService } from '../../../services/fetcher.service';
 
@@ -12,32 +12,70 @@ import { FetcherService } from '../../../services/fetcher.service';
 })
 export class MeasurementsPage implements OnInit {
 
-  measurements;
+  measurements: any;
 
-  constructor(private fetcher: FetcherService,public modal: ModalController) { }
+  constructor(
+    private fetcher: FetcherService,
+    public modal: ModalController,
+    public alerter: AlertController,
+    public loader: LoadingController) { }
 
   ngOnInit() {
     this.displayMeasurements();
   }
 
-  displayMeasurements() {
-    this.fetcher.getMeasurements('SGC4-187').subscribe((result) => {
-      if(result.CODE === 'MFS') {
-        this.measurements = result.DATA;
-      } else if (result.CODE === 'NMF') {
-        ///
-      } else {
-        /// error
-      }
-    },
-    err => {}
-    );
+async displayMeasurements() {
+
+    const load = await this.loader.create({
+      spinner: 'circular',
+      message: 'Recupération des mesures...'
+    });
+
+    load.present().then(() => {
+
+      this.fetcher.getMeasurements('SGC4-187').subscribe((result) => {
+        if (result.CODE === 'MFS') {
+          this.measurements = result.DATA;
+          load.dismiss();
+        } else if (result.CODE === 'NMF') {
+          load.dismiss();
+          this.notify('Aucune donnée', 'Aucune mesure a été trouvée.');
+        } else {
+          this.notify('Erreur innatendue', 'Une erreur est survenue lors de la recupération de vos mesures, veuillez réessayer');
+        }
+      },
+        err => {
+          load.dismiss();
+          const responseMessage = `Une erreur est survenue lors de la connexion à nos serveurs,
+          veuillez réessayer vérifier votre connexion puis réessayer`;
+          this.notify('Erreur de connexion', responseMessage);
+        }
+      );
+
+    });
+
   }
 
   goBack() {
     this.modal.dismiss({
       dismissed: true
     });
+  }
+
+  async notify(title, msg) {
+    const alert = await this.alerter.create({
+      header: title,
+      message: msg,
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.goBack();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 }

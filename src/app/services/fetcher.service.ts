@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
-// const remoteApiEndpoint = 'http://daavsecurite.com/yea/yeaapi/core/';
+// const remoteApiEndpoint = 'http://online////';
 
 const apiEndpoint = 'http://localhost/samaygnaw/api/core/mobile/';
 
@@ -24,7 +24,11 @@ export class FetcherService {
     return this.http.get(apiEndpoint + 'saloon/viewclient?sgi=' + clientSGI);
   }
 
-  getGnaws(saloonSGI): Observable<any> {
+  getClientsGnaws(clientSGI): Observable<any> {
+    return this.http.get(apiEndpoint + 'client/gnaws?sgi=' + clientSGI);
+  }
+
+  getSaloonsGnaws(saloonSGI): Observable<any> {
     return this.http.get(apiEndpoint + 'saloon/viewgnaws?sgi=' + saloonSGI);
   }
 
