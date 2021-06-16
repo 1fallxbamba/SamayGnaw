@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 
@@ -11,7 +11,11 @@ import { FetcherService } from '../../../services/fetcher.service';
 })
 export class GnawsPage implements OnInit {
 
+  @Input() displayType: string;
+
   gnawsData: any = { sgis: [], saloons: [], datesC: [], datesL: [], prix: [], avances: [], etats: [], types: [] };
+
+  saloonsGnaws;
 
   constructor(
     private fetcher: FetcherService,
@@ -21,10 +25,14 @@ export class GnawsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.displayGnaws();
+    if (this.displayType === 'client') {
+      this.displayClientsGnaws();
+    } else {
+      this.displaySaloonsGnaws();
+    }
   }
 
-  async displayGnaws() {
+  async displayClientsGnaws() {
 
     const load = await this.loader.create({
       spinner: 'circular',
@@ -59,6 +67,41 @@ export class GnawsPage implements OnInit {
           load.dismiss();
           const responseMessage = `Une erreur est survenue lors de la connexion à nos serveurs,
           veuillez réessayer vérifier votre connexion puis réessayer`;
+          this.notify('Erreur de connexion', responseMessage);
+        }
+      );
+
+    });
+
+  }
+
+  async displaySaloonsGnaws() {
+
+    const load = await this.loader.create({
+      spinner: 'circular',
+      message: 'Recupération des gnaws...'
+    });
+
+    load.present().then(() => {
+
+      this.fetcher.getSaloonsGnaws('77SGS-1001476110').subscribe((result) => {
+        if (result.CODE === 'GFS') {
+
+          this.saloonsGnaws = JSON.parse(result.DATA);
+          load.dismiss();
+
+        } else if (result.CODE === 'NGF') {
+          load.dismiss();
+          this.notify('Aucune donnée', 'Aucun gnaw n\'a été trouvé.');
+        } else {
+          this.notify('Erreur innatendue', 'Une erreur est survenue lors de la recupération de vos gnaws, veuillez réessayer');
+        }
+
+      },
+        err => {
+          load.dismiss();
+          const responseMessage = `Une erreur est survenue lors de la connexion à nos serveurs,
+        veuillez réessayer vérifier votre connexion puis réessayer`;
           this.notify('Erreur de connexion', responseMessage);
         }
       );

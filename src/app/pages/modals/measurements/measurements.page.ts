@@ -24,7 +24,7 @@ export class MeasurementsPage implements OnInit {
     this.displayMeasurements();
   }
 
-  async displayMeasurements() {
+async displayMeasurements() {
 
     const load = await this.loader.create({
       spinner: 'circular',

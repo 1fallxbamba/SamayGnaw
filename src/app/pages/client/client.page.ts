@@ -32,7 +32,10 @@ export class ClientPage implements OnInit {
   async showGnawsModal() {
 
     const modal = await this.modal.create({
-      component: GnawsPage
+      component: GnawsPage,
+      componentProps : {
+        displayType : 'client'
+      }
     });
 
     return await modal.present();

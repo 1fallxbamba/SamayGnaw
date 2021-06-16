@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
-// const remoteApiEndpoint = 'http://daavsecurite.com/yea/yeaapi/core/';
+// const remoteApiEndpoint = 'http://online////';
 
 const apiEndpoint = 'http://localhost/samaygnaw/api/core/mobile/';
 
