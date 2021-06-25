@@ -16,6 +16,16 @@ ion-text {
   }
 }
 
+.logo {
+  margin-bottom: 50px;
+  img {
+    text-align: center;
+    width: 315px;
+    height: auto;
+    margin-left: -20px;
+  }
+}
+
 .actions {
   position: absolute;
   width: 90%;

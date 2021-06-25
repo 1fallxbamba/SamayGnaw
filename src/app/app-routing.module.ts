@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'gnaw',
     loadChildren: () => import('./pages/modals/gnaw/gnaw.module').then( m => m.GnawPageModule)
   },
+  {
+    path: 'addgnaw',
+    loadChildren: () => import('./pages/addgnaw/addgnaw.module').then( m => m.AddgnawPageModule)
+  },
 ];
 
 @NgModule({

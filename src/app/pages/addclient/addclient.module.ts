@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GnawsPageRoutingModule } from './gnaws-routing.module';
+import { AddclientPageRoutingModule } from './addclient-routing.module';
 
-import { GnawsPage } from './gnaws.page';
+import { AddclientPage } from './addclient.page';
 
 
 @NgModule({
@@ -14,8 +14,8 @@ import { GnawsPage } from './gnaws.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GnawsPageRoutingModule
+    AddclientPageRoutingModule
   ],
-  declarations: [GnawsPage]
+  declarations: [AddclientPage]
 })
-export class GnawsPageModule {}
+export class AddclientPageModule {}

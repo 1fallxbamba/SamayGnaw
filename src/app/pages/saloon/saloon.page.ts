@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ModalController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 
 import { FetcherService } from '../../services/fetcher.service';
 import { GnawsPage } from '../modals/gnaws/gnaws.page';
@@ -14,17 +14,25 @@ import { GnawsPage } from '../modals/gnaws/gnaws.page';
 })
 export class SaloonPage implements OnInit {
 
-  constructor(public modal: ModalController, public router: Router) { }
+  slidesOptions = {
+    slidesPerView: 1.4
+  };
+
+  constructor(public modal: ModalController, public menu: MenuController, public router: Router) { }
 
   ngOnInit() {
+  }
+
+  openMenu() {
+    this.menu.open('sidem');
   }
 
   async showGnawsModal() {
 
     const modal = await this.modal.create({
       component: GnawsPage,
-      componentProps : {
-        displayType : 'saloon'
+      componentProps: {
+        displayType: 'saloon'
       }
     });
 
