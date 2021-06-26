@@ -156,32 +156,32 @@
 <ion-menu side="start" content="content" menuId="sidem" contentId="main" class="sideM">
   <ion-header>
     <ion-toolbar style="--background: #fafafa;">
-      <ion-title  padding >MENU</ion-title>
+      <ion-title   >MENU</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content style="--background: #fafafa !important;" id="main">
+  <ion-content style="--background: #fafafa !important;" id="main" >
 
-    <ion-list>
-      <ion-item >
+    <ion-list >
+      <ion-button expand="full" routerLink="add-client" >
         <ion-icon name="person-add-outline"></ion-icon>
         Nouveau client
-       </ion-item>
+       </ion-button>
 
 
-       <ion-item >
+       <ion-button expand="full" >
         <ion-icon name="add-circle-outline"></ion-icon>
         Nouveau gnaw
-       </ion-item>
+       </ion-button>
 
-       <ion-item >
+       <ion-button expand="full" >
         <ion-icon name="people-outline"></ion-icon>
         Mes clients
-       </ion-item>
+       </ion-button>
 
-       <ion-item >
+       <ion-button expand="full" (click)="showGnawsModal()" >
         <ion-icon name="cut-outline"></ion-icon>
         Mes gnaws
-       </ion-item>
+       </ion-button>
 
     </ion-list>
 

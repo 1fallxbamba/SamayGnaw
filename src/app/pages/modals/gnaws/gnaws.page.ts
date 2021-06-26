@@ -43,6 +43,8 @@ export class GnawsPage implements OnInit {
 
       this.fetcher.getClientsGnaws('SGC4-187').subscribe((result) => {
 
+        load.dismiss();
+
         if (result.CODE === 'GFS') {
 
           this.gnawsData.sgis = JSON.parse(result.DATA).sgis;
@@ -54,10 +56,10 @@ export class GnawsPage implements OnInit {
           this.gnawsData.etats = JSON.parse(result.DATA).etats;
           this.gnawsData.types = JSON.parse(result.DATA).types;
 
-          load.dismiss();
+          // load.dismiss();
 
         } else if (result.CODE === 'NGF') {
-          load.dismiss();
+
           this.notify('Aucune donnée', 'Aucun gnaw n\'a été trouvé.');
         } else {
           this.notify('Erreur innatendue', 'Une erreur est survenue lors de la recupération de vos gnaws, veuillez réessayer');
