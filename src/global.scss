@@ -40,7 +40,7 @@ ion-toolbar {
 ion-button {
   --background-activated: #0a8bb2;
   --background-focused: #023d69;
-  --background-hover: #0a8bb2
+  --background-hover: #0a8bb2;
 }
 
 .gnaw-word {
@@ -62,3 +62,5 @@ ion-button {
 .sg-btn-fourth {
   --background: #0a8bb2;
 }
+
+@import "~@mobiscroll/angular/dist/css/mobiscroll.scss";

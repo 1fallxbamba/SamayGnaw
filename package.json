@@ -22,6 +22,7 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/lab": "^3.2.10",
     "@ionic/storage": "2.2.0",
+    "@mobiscroll/angular": "https://npm.mobiscroll.com/@mobiscroll/angular-trial/-/angular-trial-4.10.9.tgz",
     "cordova-android": "^8.1.0",
     "cordova-sqlite-storage": "^6.0.0",
     "rxjs": "~6.6.0",

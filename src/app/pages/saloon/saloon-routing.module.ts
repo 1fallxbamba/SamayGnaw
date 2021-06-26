@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SaloonPage
+  },
+  {
+    path: 'add-client',
+    loadChildren: () => import('../addclient/addclient.module').then(m => m.AddclientPageModule)
   }
 ];
 
