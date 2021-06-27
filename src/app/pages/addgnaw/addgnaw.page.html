@@ -1,9 +1,99 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title>addgnaw</ion-title>
+    <ion-title>Gnaw</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
+
+  <ion-card >
+    <ion-card-header class="ion-text-center">
+        <ion-card-title>Nouveau Gnaw</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <form #gnawForm="ngForm">
+
+        <ion-item>
+
+          <ion-label position="floating">Type de gnaw</ion-label>
+          <ion-input
+          [(ngModel)]="gnawData.type"
+          name="prop"
+          #type="ngModel"
+          type="text"
+          placeholder="(Exemple : Demi-saison, Grand Boubou...)"
+          required></ion-input>
+
+        </ion-item>
+
+        <ion-item>
+
+          <ion-label position="floating">Propriétaire</ion-label>
+          <ion-input
+          [(ngModel)]="gnawData.prop"
+          name="prop"
+          #prop="ngModel"
+          type="text"
+          required></ion-input>
+
+        </ion-item>
+
+        <ion-item>
+
+          <ion-label position="floating">Prix (FCFA) </ion-label>
+          <ion-input
+          [(ngModel)]="gnawData.price"
+          name="price"
+          #price="ngModel"
+          type="tel"
+          required></ion-input>
+
+        </ion-item>
+
+        <ion-item>
+
+          <ion-label position="floating">Avance (FCFA)</ion-label>
+          <ion-input
+          [(ngModel)]="gnawData.avance"
+          name="avance"
+          #avance="ngModel"
+          type="tel"></ion-input>
+
+        </ion-item>
+
+        <ion-item lines="full">
+          <!-- <ion-label position="floating">Date et Heure de livraison</ion-label> -->
+          <ion-datetime
+          [(ngModel)]="gnawData.dateL"
+          name="dateL"
+          #dateL="ngModel"
+          displayFormat="D MMM YYYY H:mm"
+          display-timezone="utc"
+          monthShortNames="Jan, Fev, Mar, Avr, Mai, Juin, Jul, Août, Sep, Oct, Nov, Dec"
+          doneText="Valider"
+          min="2021"
+          max="2100"
+          minuteValues="0,15,30,45"
+          placeholder="Date et Heure de livraison"
+          required></ion-datetime>
+        </ion-item>
+
+
+      </form>
+
+    </ion-card-content>
+    <div class="ion-btn-group-block ion-padding ion-text-center">
+
+      <ion-button
+      [disabled]="!gnawForm.form.valid"
+      (click)="addGnaw()"
+      style="--background: #023d69">Valider</ion-button>
+
+        <ion-button
+        routerLink="../"
+        style="--background: #f86f05">Annuler</ion-button>
+    </div>
+</ion-card>
 
 </ion-content>

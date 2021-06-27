@@ -2,3 +2,28 @@
     font-size: 13px;
     text-transform: uppercase;
 }
+
+ion-grid {
+  ion-item {
+    border-radius: 15px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  // .native-input {
+  //   color: #023d69;
+  //   font-weight: bold;
+  // }
+
+}
+
+ion-input {
+  --color: #023d69;
+  font-weight: bold;
+}
+
+ion-select {
+  color: #023d69;
+  font-weight: bold;
+}

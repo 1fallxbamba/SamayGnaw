@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Nouveau client</ion-title>
+        <ion-buttons slot="start">
+      <ion-back-button defaultHref="saloon" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Client</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -43,6 +46,7 @@
         name="phone"
         #phone="ngModel"
         type="tel"
+        maxlength="9"
         required></ion-input>
       </ion-item>
 
@@ -54,11 +58,6 @@
         </ion-select>
       </ion-item>
 
-
-      <!-- <ion-item lines="full">
-        <ion-label position="floating">DOB</ion-label>
-        <ion-datetime   ></ion-datetime>
-      </ion-item> -->
 
     </form>
 
@@ -72,26 +71,40 @@
 
     <form #measurements="ngForm">
 
-      <ion-item lines="full">
-        <ion-label position="floating">Cou</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.cou"
-        name="cou"
-        #cou="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+      <ion-grid >
 
+        <ion-row>
+          <ion-col width-50>
+            <ion-item >
+              <ion-label position="floating">Cou</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.cou"
+              name="cou"
+              #cou="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col width-50 class="epl">
 
-      <ion-item lines="full">
-        <ion-label position="floating">Epaule</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.epaule"
-        name="epaule"
-        #epaule="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+              <ion-item >
+                <ion-label position="floating">Epaule</ion-label>
+                <ion-input
+                [(ngModel)]="clientData.epaule"
+                name="epaule"
+                #epaule="ngModel"
+                type="tel"
+                maxlength="5"
+                required></ion-input>
+              </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+
 
       <ion-item lines="full">
         <ion-label position="floating">Poitrine</ion-label>
@@ -99,105 +112,163 @@
         [(ngModel)]="clientData.poitrine"
         name="poitrine"
         #poitrine="ngModel"
-        type="number"
+        type="tel"
+        maxlength="5"
         required></ion-input>
       </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Ceinture</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.ceinture"
-        name="ceinture"
-        #ceinture="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+          </ion-col>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Tour bras</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.tourBras"
-        name="tourBras"
-        #tourBras="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+          <ion-col size="6">
 
-      <ion-item lines="full">
-        <ion-label position="floating">Tour poignet</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.tourPoignet"
-        name="tourPoignet"
-        #tourPoignet="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Ceinture</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.ceinture"
+              name="ceinture"
+              #ceinture="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Longueur manche</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.longManche"
-        name="longManche"
-        #longManche="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+          </ion-col>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Longueur pantalon</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.longPant"
-        name="longPant"
-        #longPant="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+        </ion-row>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Taille</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.longTaille"
-        name="longTaille"
-        #longTaille="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+        <ion-row>
+          <ion-col size="6">
 
-      <ion-item lines="full">
-        <ion-label position="floating">Longueur caftan</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.longCaftan"
-        name="longCaftan"
-        #longCaftan="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Tour bras</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.tourBras"
+              name="tourBras"
+              #tourBras="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Tour cuisse</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.tourCuisse"
-        name="tourCuisse"
-        #tourCuisse="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+          </ion-col>
 
-      <ion-item lines="full">
-        <ion-label position="floating">Tour cheville</ion-label>
-        <ion-input
-        [(ngModel)]="clientData.tourCheville"
-        name="tourCheville"
-        #tourCheville="ngModel"
-        type="number"
-        required></ion-input>
-      </ion-item>
+          <ion-col size="6">
 
+            <ion-item lines="full">
+              <ion-label position="floating">Poignet</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.tourPoignet"
+              name="tourPoignet"
+              #tourPoignet="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
 
-      <!-- <ion-item lines="full">
-        <ion-label position="floating">DOB</ion-label>
-        <ion-datetime   ></ion-datetime>
-      </ion-item> -->
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+
+            <ion-item lines="full">
+              <ion-label position="floating">Manche</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.longManche"
+              name="longManche"
+              #longManche="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+          <ion-col size="6">
+
+            <ion-item lines="full">
+              <ion-label position="floating">Pantalon</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.longPant"
+              name="longPant"
+              #longPant="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+
+            <ion-item lines="full">
+              <ion-label position="floating">Taille</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.longTaille"
+              name="longTaille"
+              #longTaille="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+          <ion-col size="6">
+
+            <ion-item lines="full">
+              <ion-label position="floating">Caftan</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.longCaftan"
+              name="longCaftan"
+              #longCaftan="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+
+            <ion-item lines="full">
+              <ion-label position="floating">Cuisse</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.tourCuisse"
+              name="tourCuisse"
+              #tourCuisse="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+          <ion-col size="6">
+
+            <ion-item lines="full">
+              <ion-label position="floating">Cheville</ion-label>
+              <ion-input
+              [(ngModel)]="clientData.tourCheville"
+              name="tourCheville"
+              #tourCheville="ngModel"
+              type="tel"
+              maxlength="5"
+              required></ion-input>
+            </ion-item>
+
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
 
 
       <ion-row>
