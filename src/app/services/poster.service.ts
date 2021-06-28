@@ -30,5 +30,11 @@ export class PosterService {
 
   }
 
+  postGnaw(gnawData): Observable<any> {
+
+    return this.http.post<any>(apiEndpoint + 'saloon/addgnaw',  JSON.stringify(gnawData), httpOptions);
+
+  }
+
 
 }

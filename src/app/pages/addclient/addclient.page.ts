@@ -37,7 +37,6 @@ export class AddclientPage implements OnInit {
   constructor(private poster: PosterService, public alerter: AlertController, public loader: LoadingController, public router: Router) { }
 
   ngOnInit() {
-    // console.log(Object.keys(this.genderOptions));
   }
 
   getGender(val: string) {
@@ -48,7 +47,7 @@ export class AddclientPage implements OnInit {
 
     const load = await this.loader.create({
       spinner: 'circular',
-      message: 'Ajout du client en cours...'
+      message: 'Ajout de votre gnaw en cours...'
     });
 
     load.present().then(() => {
@@ -60,7 +59,7 @@ export class AddclientPage implements OnInit {
         if (response.CODE === 'NCSA') {
 
           this.notify('Opération réussie',
-            'Le nouveau client a été ajouté avec succés. \n Veuillez lui communiquer son sgi qui est : ' + response.DATA);
+            'Votre nouveau client a été ajouté avec succés. \n Veuillez lui communiquer son sgi qui est : ' + response.DATA);
 
         } else if (response.CODE === 'UNEX') {
           this.notify('Erreur innatendue', 'Une erreur est survenue lors de la création du client, veuillez réessayer.');
