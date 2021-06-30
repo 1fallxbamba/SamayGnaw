@@ -1,3 +1,25 @@
 ion-item::part(native) {
   padding-inline-start: 0px !important;
 }
+
+ion-card {
+  ion-card-title {
+    font-size: 25px;
+    color: #023d69;
+  }
+}
+
+ion-input {
+  --color: #023d69;
+  font-weight: bold;
+}
+
+ion-datetime {
+  color: #023d69;
+}
+
+.alert {
+  color: rgb(132, 32, 41);
+  background-color: rgb(248, 215, 218);
+  border-color: rgb(245, 194, 199);
+}

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="saloon"
+        (click)="goBack()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vos clients</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-card *ngFor="let c of clients">
+      <!-- <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar> -->
+      <ion-card-title class="ion-text-center"> {{c.nom}} </ion-card-title>
+      <ion-card-content>
+        <p>SGI : {{c.sgi}} </p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>

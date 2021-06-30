@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 import { MenuController, ModalController } from '@ionic/angular';
 
 import { FetcherService } from '../../services/fetcher.service';
+import { StorageService } from '../../services/storage.service';
+
 import { GnawsPage } from '../modals/gnaws/gnaws.page';
+import { ClientsPage } from '../modals/clients/clients.page';
+
 
 
 @Component({
@@ -18,9 +22,13 @@ export class SaloonPage implements OnInit {
     slidesPerView: 1.4
   };
 
-  constructor(public modal: ModalController, public menu: MenuController, public router: Router) { }
+  constructor(public modal: ModalController,
+    public menu: MenuController,
+    public router: Router,
+    private storer: StorageService) { }
 
   ngOnInit() {
+
   }
 
   openMenu() {
@@ -34,6 +42,15 @@ export class SaloonPage implements OnInit {
       componentProps: {
         displayType: 'saloon'
       }
+    });
+
+    return await modal.present();
+  }
+
+  async showClientsModal() {
+
+    const modal = await this.modal.create({
+      component: ClientsPage
     });
 
     return await modal.present();

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 import { PosterService } from '../../services/poster.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-addgnaw',
@@ -12,11 +13,25 @@ import { PosterService } from '../../services/poster.service';
 })
 export class AddgnawPage implements OnInit {
 
-  gnawData = {prop: '', saloon: '77SGS-1111902111', dateL: '', price: 0, avance: 0, type: ''};
+  gnawData = { prop: 'SGC', saloon: '', dateL: '', price: 0, avance: 0, type: '' };
 
-  constructor(private poster: PosterService, public alerter: AlertController, public loader: LoadingController, public router: Router) { }
+  invalidSGI = false;
+
+  constructor(
+    private poster: PosterService,
+    private storer: StorageService,
+    public alerter: AlertController,
+    public loader: LoadingController,
+    public router: Router) { }
 
   ngOnInit() {
+    this.validateSGI();
+    const alrt = document.getElementById('alrt');
+    alrt.style.display = 'none';
+
+    this.storer.getUserSGI().then((sgi) => {
+      this.gnawData.saloon = sgi;
+    });
   }
 
   async addGnaw() {
@@ -56,7 +71,7 @@ export class AddgnawPage implements OnInit {
   }
 
 
-  async notify(title, msg) {
+  async notify(title: string, msg: string) {
     const alert = await this.alerter.create({
       header: title,
       message: msg,
@@ -72,4 +87,18 @@ export class AddgnawPage implements OnInit {
     await alert.present();
   }
 
+  validateSGI() {
+    if (!this.gnawData.prop.includes('SGC') || this.gnawData.prop.length <= 5) {
+      this.invalidSGI = true;
+
+      const alrt = document.getElementById('alrt');
+      alrt.style.display = 'block';
+
+    } else {
+      this.invalidSGI = false;
+
+      const alrt = document.getElementById('alrt');
+      alrt.style.display = 'none';
+    }
+  }
 }

@@ -6,11 +6,11 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -36,9 +36,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modals/gnaw/gnaw.module').then( m => m.GnawPageModule)
   },
   {
-    path: 'addgnaw',
-    loadChildren: () => import('./pages/addgnaw/addgnaw.module').then( m => m.AddgnawPageModule)
-  },
+    path: 'tmp',
+    loadChildren: () => import('./pages/shared/tmp/tmp.module').then( m => m.TmpPageModule)
+  }
 ];
 
 @NgModule({

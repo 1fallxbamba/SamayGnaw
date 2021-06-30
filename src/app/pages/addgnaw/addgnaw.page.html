@@ -19,7 +19,7 @@
           <ion-label position="floating">Type de gnaw</ion-label>
           <ion-input
           [(ngModel)]="gnawData.type"
-          name="prop"
+          name="type"
           #type="ngModel"
           type="text"
           placeholder="(Exemple : Demi-saison, Grand Boubou...)"
@@ -29,15 +29,22 @@
 
         <ion-item>
 
-          <ion-label position="floating">Propriétaire</ion-label>
+          <ion-label position="floating">Propriétaire (SGI du client)</ion-label>
           <ion-input
           [(ngModel)]="gnawData.prop"
           name="prop"
           #prop="ngModel"
           type="text"
+          id="prop"
+          (ionChange)="validateSGI()"
           required></ion-input>
 
         </ion-item>
+
+        <div style="display: none;" class="alert" id="alrt">
+          Veuillez entrer un SGI valide <br>
+          Exemple : SGC0-024
+        </div>
 
         <ion-item>
 
@@ -86,13 +93,14 @@
     <div class="ion-btn-group-block ion-padding ion-text-center">
 
       <ion-button
-      [disabled]="!gnawForm.form.valid"
+      [disabled]="(!gnawForm.form.valid) || (invalidSGI)"
       (click)="addGnaw()"
       style="--background: #023d69">Valider</ion-button>
 
         <ion-button
         routerLink="../"
         style="--background: #f86f05">Annuler</ion-button>
+
     </div>
 </ion-card>
 

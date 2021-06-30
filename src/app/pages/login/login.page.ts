@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
 
 import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
 
 
 
@@ -18,6 +19,7 @@ export class LoginPage implements OnInit {
 
 
   constructor(private auth: AuthService,
+    private storer: StorageService,
     public router: Router,
     public loader: LoadingController,
     public alerter: AlertController) { }
@@ -37,7 +39,16 @@ export class LoginPage implements OnInit {
       this.auth.logUserIn(this.loginData).subscribe((response) => {
         if (response.CODE === 'USA') {
           load.dismiss();
-          this.router.navigate(['saloon']);
+          this.storer.getUserSGI().then((val) => {
+            if ( val === undefined || val === null ) {
+              this.storer.setUserSGI(this.loginData.sgi).then(() => {
+                this.router.navigate(['saloon']);
+              });
+            } else {
+              this.router.navigate(['saloon']);
+            }
+          });
+
         } else if (response.CODE === 'WPWD') {
           load.dismiss();
           this.notify('Mot de passe incorrect', 'Le mot de passe que vous avez entré est incorrect, veuillez réessayer.');
