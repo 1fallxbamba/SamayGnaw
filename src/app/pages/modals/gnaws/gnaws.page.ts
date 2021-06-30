@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 
 import { FetcherService } from '../../../services/fetcher.service';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-gnaws',
@@ -17,8 +18,11 @@ export class GnawsPage implements OnInit {
 
   saloonsGnaws;
 
+  saloonSGI;
+
   constructor(
     private fetcher: FetcherService,
+    private storer: StorageService,
     public modal: ModalController,
     public alerter: AlertController,
     public loader: LoadingController
@@ -28,7 +32,9 @@ export class GnawsPage implements OnInit {
     if (this.displayType === 'client') {
       this.displayClientsGnaws();
     } else {
-      this.displaySaloonsGnaws();
+      this.storer.getUserSGI().then((sgi) => {
+        this.displaySaloonsGnaws(sgi);
+      });
     }
   }
 
@@ -77,27 +83,28 @@ export class GnawsPage implements OnInit {
 
   }
 
-  async displaySaloonsGnaws() {
+  async displaySaloonsGnaws(saloonSGI: string) {
 
     const load = await this.loader.create({
       spinner: 'circular',
-      message: 'Recupération des gnaws...'
+      message: 'Recupération de vos gnaws...'
     });
 
     load.present().then(() => {
 
-      this.fetcher.getSaloonsGnaws('77SGS-1001476110').subscribe((result) => {
-        if (result.CODE === 'GFS') {
+      this.fetcher.getSaloonsGnaws(saloonSGI).subscribe((result) => {
 
-          this.saloonsGnaws = JSON.parse(result.DATA);
-          load.dismiss();
+        load.dismiss().then(() => {
 
-        } else if (result.CODE === 'NGF') {
-          load.dismiss();
-          this.notify('Aucune donnée', 'Aucun gnaw n\'a été trouvé.');
-        } else {
-          this.notify('Erreur innatendue', 'Une erreur est survenue lors de la recupération de vos gnaws, veuillez réessayer');
-        }
+          if (result.CODE === 'GFS') {
+            this.saloonsGnaws = JSON.parse(result.DATA);
+          } else if (result.CODE === 'NGF') {
+            this.notify('Aucune donnée', 'Aucun gnaw n\'a été trouvé.');
+          } else {
+            this.notify('Erreur innatendue', 'Une erreur est survenue lors de la recupération de vos gnaws, veuillez réessayer');
+          }
+
+        });
 
       },
         err => {

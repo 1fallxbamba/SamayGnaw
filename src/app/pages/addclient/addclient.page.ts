@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 import { PosterService } from '../../services/poster.service';
+import { StorageService } from '../../services/storage.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class AddclientPage implements OnInit {
   genderOptions = ['Masculin', 'Féminin'];
 
   clientData = {
+    saloon: '',
     firstName: '',
     lastName: '',
     phone: '',
@@ -34,9 +36,17 @@ export class AddclientPage implements OnInit {
     tourCheville: 0
   };
 
-  constructor(private poster: PosterService, public alerter: AlertController, public loader: LoadingController, public router: Router) { }
+  constructor(
+    private poster: PosterService,
+    private storer: StorageService,
+    public alerter: AlertController,
+    public loader: LoadingController,
+    public router: Router) { }
 
   ngOnInit() {
+    this.storer.getUserSGI().then((sgi) => {
+      this.clientData.saloon = sgi;
+    });
   }
 
   getGender(val: string) {
@@ -47,7 +57,7 @@ export class AddclientPage implements OnInit {
 
     const load = await this.loader.create({
       spinner: 'circular',
-      message: 'Ajout de votre gnaw en cours...'
+      message: 'Ajout de votre client en cours...'
     });
 
     load.present().then(() => {

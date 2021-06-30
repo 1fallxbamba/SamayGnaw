@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'add-gnaw',
     loadChildren: () => import('../addgnaw/addgnaw.module').then(m => m.AddgnawPageModule)
+  },
+  {
+    path: 'clients',
+    loadChildren: () => import('../modals/clients/clients.module').then(m => m.ClientsPageModule)
   }
 ];
 
