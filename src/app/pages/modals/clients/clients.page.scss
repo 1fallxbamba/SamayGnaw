@@ -1,3 +1,29 @@
 ion-content {
   --background: #fafafa;
 }
+
+.clientName {
+  text-align: center;
+  padding-top: 4%;
+  font-size: 22px;
+  color: #023d69;
+}
+
+ion-card {
+  ion-card-content{
+    p {
+      font-size: 20px;
+      span{
+        color: #023d69;
+      }
+    }
+  }
+}
+
+.more {
+  text-align: center;
+  padding-bottom: 3%;
+  ion-button {
+    --background: #023d69;
+  }
+}

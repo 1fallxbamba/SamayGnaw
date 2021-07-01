@@ -62,8 +62,7 @@ export class LoginPage implements OnInit {
       },
         error => {
           load.dismiss();
-          const responseMessage = `Une erreur est survenue lors de la connexion à nos serveurs,
-        veuillez réessayer vérifier votre connexion puis réessayer`;
+          const responseMessage = `Une erreur est survenue lors de la connexion à nos serveurs, vérifier votre connexion puis réessayer`;
           this.notify('Erreur de connexion', responseMessage);
         }
       );
