@@ -56,7 +56,7 @@ export class SaloonPage implements OnInit {
     return await modal.present();
   }
 
-  logout() {
+  logout() { // add a fake loader
     this.router.navigate(['login']);
   }
 

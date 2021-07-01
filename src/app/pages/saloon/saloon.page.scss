@@ -123,11 +123,17 @@ ion-progress-bar {
 }
 
 .sideM {
-  --width: 500px;
+  --max-width: 300px;
 
   ion-icon {
     margin-right: 6px;
   }
+
+  ion-button {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
 }
 
 #main {

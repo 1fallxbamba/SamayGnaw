@@ -161,34 +161,31 @@
   </ion-header>
   <ion-content style="--background: #fafafa !important;" id="main" >
 
-    <ion-list >
-      <ion-button expand="full" routerLink="add-client" >
+      <ion-button routerLink="add-client" expand="block"  >
         <ion-icon name="person-add-outline"></ion-icon>
         Nouveau client
        </ion-button>
 
 
-       <ion-button expand="full" routerLink="add-gnaw" >
+       <ion-button routerLink="add-gnaw"  expand="block" >
         <ion-icon name="add-circle-outline"></ion-icon>
         Nouveau gnaw
        </ion-button>
 
-       <ion-button (click)="showClientsModal()" expand="full" >
+       <ion-button (click)="showClientsModal()" expand="block" >
         <ion-icon name="people-outline"></ion-icon>
         Mes clients
        </ion-button>
 
-       <ion-button expand="full" (click)="showGnawsModal()" >
+       <ion-button (click)="showGnawsModal()" expand="block"  >
         <ion-icon name="cut-outline"></ion-icon>
         Mes gnaws
        </ion-button>
 
-    </ion-list>
-
   </ion-content>
 
   <ion-footer style="text-align: center; background: #fafafa;">
-      <a style="color: #f86f05;" >Déconnexion</a>
+      <a (click)="logout()" style="color: #f86f05;" >Déconnexion</a>
   </ion-footer>
 </ion-menu>
 
