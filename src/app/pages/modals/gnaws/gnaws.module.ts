@@ -17,4 +17,4 @@ import { GnawsPage } from './gnaws.page';
   ],
   declarations: [GnawsPage]
 })
-export class GnawsPageModule {}
+export class GnawsPageModule { }

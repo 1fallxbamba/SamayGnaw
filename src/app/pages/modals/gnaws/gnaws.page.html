@@ -1,9 +1,122 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>gnaws</ion-title>
+    <ion-buttons *ngIf="displayType === 'client'" slot="start">
+      <ion-back-button
+        defaultHref="client"
+        (click)="goBack()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="displayType === 'saloon'" slot="start">
+      <ion-back-button
+        defaultHref="saloon"
+        (click)="goBack()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vos gnaws</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="displayType === 'client'">
+    <ion-card *ngFor="let gnaw of clientsGnaws">
+      <ion-card-header>
+        <ion-card-title style="padding-bottom: 5%; font-size: 23px">
+          {{gnaw.type}}
+        </ion-card-title>
+        <!-- <ion-card-subtitle>
+          Salon : {{gnaw.salon}}
+        </ion-card-subtitle> -->
+        <ion-card-subtitle style="margin-bottom: 5%; font-size: 13px">
+          <span style="font-size: 15px; color: #0a0a0a">Commandé le :</span>
+          {{gnaw.dateC | date:'short' : undefined : 'fr' }}
+        </ion-card-subtitle>
+        <ion-card-subtitle style="padding-bottom: 5%; font-size: 13px">
+          <span style="font-size: 15px; color: #0a0a0a">A livrer le :</span>
+          {{gnaw.dateL | date:'short' : undefined : 'fr'}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content
+        style="padding-bottom: 15px; padding-top: 0px; font-size: 17px"
+      >
+        <!-- Type de gnaw : <span>{{gnaw.type}}</span> <br /> -->
+        Prix :
+        <span>{{gnaw.prix | currency:'xof' : 'FCFA' : '4.0' : 'fr' }}</span>
+        <br />
+        Avance :
+        <span>{{gnaw.avance | currency:'xof' : 'FCFA' : '4.0' : 'fr'}}</span>
+        <br />
+        Montant dû :
+        <span>
+          {{ (gnaw.prix - gnaw.avance)| currency:'xof' : 'FCFA' : '4.0' : 'fr'}}
+        </span>
+      </ion-card-content>
+      <ion-footer
+        *ngIf="gnaw.etat === 'Attente paiement' || gnaw.etat === 'En cours'"
+        class="ion-text-center"
+      >
+        <span style="color: #f86f05">{{gnaw.etat}} </span>
+      </ion-footer>
+      <ion-footer *ngIf="gnaw.etat === 'Terminé'" class="ion-text-center">
+        <span style="color: #023d69">{{gnaw.etat}} </span>
+      </ion-footer>
+    </ion-card>
+  </div>
 
+  <div *ngIf="displayType === 'saloon'">
+    <ion-card *ngFor="let gnaw of saloonsGnaws; let i = index">
+      <ion-card-header>
+        <ion-card-title class="clientName">
+          Gnaw de {{clientsNames[i]}}
+        </ion-card-title>
+        <!-- <ion-card-subtitle> Propriétaire : {{clientsNames[i]}} </ion-card-subtitle> -->
+        <ion-card-subtitle>
+          <span>Type : </span> {{gnaw.type }}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          <span>Commandé le : </span> {{gnaw.dateC | date:'short' : undefined :
+          'fr' }}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          <span>A livrer le : </span> {{gnaw.dateL | date:'short' : undefined :
+          'fr'}}
+        </ion-card-subtitle>
+        <ion-card-subtitle
+          *ngIf="gnaw.etat === 'Attente paiement' || gnaw.etat === 'En cours'"
+        >
+          <span>Etat : </span>
+          <span style="color: #f86f05 !important; font-size: 15px !important"
+            >{{gnaw.etat}}
+          </span>
+        </ion-card-subtitle>
+
+        <ion-card-subtitle *ngIf="gnaw.etat === 'Terminé'">
+          <span>état : </span>
+          <span style="color: #023d69 !important; font-size: 15px !important"
+            >{{gnaw.etat}}
+          </span>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <div class="more">
+        <ion-button>
+          <ion-icon name="information-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <!-- <ion-card-content>
+      Type de gnaw : <span>{{gnaw.type}}</span>  <br />
+      Prix : <span>{{gnaw.prix | currency:'xof' : 'FCFA' : '4.0' : 'fr' }}</span>  <br />
+      Avance : <span>{{gnaw.avance | currency:'xof' : 'FCFA' : '4.0' : 'fr'}}</span>  <br />
+      Montant dû : <span> {{ (gnaw.prix - gnaw.avance)| currency:'xof' : 'FCFA' : '4.0' : 'fr'}} </span>
+    </ion-card-content> -->
+      <!-- <ion-footer
+      *ngIf="gnaw.etat === 'Attente paiement' || gnaw.etat === 'En cours'"
+        class="ion-text-center"
+      >
+        Etat : <span style="color: #f86f05">{{gnaw.etat}} </span>
+      </ion-footer>
+      <ion-footer *ngIf="gnaw.etat === 'Terminé'" class="ion-text-center">
+        Etat : <span style="color: #023d69">{{gnaw.etat}} </span>
+      </ion-footer> -->
+    </ion-card>
+  </div>
 </ion-content>

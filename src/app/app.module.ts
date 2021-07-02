@@ -11,25 +11,30 @@ registerLocaleData(localeFr, 'fr');
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { GnawsPageModule } from './pages/modals/gnaws/gnaws.module';
+import { MeasurementsPageModule } from './pages/modals/measurements/measurements.module';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    GnawsPageModule, MeasurementsPageModule],
   providers: [
     ScreenOrientation,
     NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

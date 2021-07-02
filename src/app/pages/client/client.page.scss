@@ -1,0 +1,30 @@
+// ion-toolbar {
+//   --background: #023d69;
+//   ion-title {
+//     color: white;
+//   }
+// }
+
+ion-card {
+  background: #023d69;
+  margin-top: 0px;
+  ion-icon {
+    color: white;
+  }
+  h1, h2, p {
+    color: white;
+  }
+}
+
+.userInfo {
+  margin-top: 15%;
+  margin-bottom: 5%;
+  img {
+    width: 125px;
+    height: 125px;
+    margin-top: 5px;
+    margin-bottom: -15px;
+    border-radius: 50%;
+  }
+}
+

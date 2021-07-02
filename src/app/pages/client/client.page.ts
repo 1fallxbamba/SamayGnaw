@@ -1,4 +1,12 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
+
+import { ModalController } from '@ionic/angular';
+
+import { FetcherService } from '../../services/fetcher.service';
+import { MeasurementsPage } from '../modals/measurements/measurements.page';
+import { GnawsPage } from '../modals/gnaws/gnaws.page';
+
 
 @Component({
   selector: 'app-client',
@@ -7,9 +15,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientPage implements OnInit {
 
-  constructor() { }
+  constructor(public modal: ModalController) { }
 
   ngOnInit() {
+  }
+
+  async showMeasurementsModal() {
+
+    const modal = await this.modal.create({
+      component: MeasurementsPage
+    });
+
+    return await modal.present();
+  }
+
+  async showGnawsModal() {
+
+    const modal = await this.modal.create({
+      component: GnawsPage,
+      componentProps : {
+        displayType : 'client'
+      }
+    });
+
+    return await modal.present();
   }
 
 }

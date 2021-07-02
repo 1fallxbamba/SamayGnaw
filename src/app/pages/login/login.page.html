@@ -1,9 +1,72 @@
-<ion-header>
+<!-- <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title class="ion-text-center">Connexion Salon</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <div style="text-align: center; margin-top: 15%">
+    <img src="../../../assets/sgLogo3.PNG" />
+  </div>
 
+  <div class="loginText">
+    <h2>Connectez vous</h2>
+  </div>
+
+  <div class="ion-padding">
+    <form class="ion-padding" #loginForm="ngForm">
+      <div class="wrap-input">
+        <input
+          [(ngModel)]="loginData.sgi"
+          #sgi="ngModel"
+          name="sgi"
+          type="text"
+          required
+          class="input"
+          type="text"
+          placeholder="SGI"
+        />
+      </div>
+
+      <div class="wrap-input">
+        <input
+          [(ngModel)]="loginData.pwd"
+          #pwd="ngModel"
+          name="pwd"
+          type="password"
+          required
+          class="input"
+          type="password"
+          placeholder="Mot de passe"
+        />
+      </div>
+
+      <!-- <div class="wrap-input">
+        <input
+          [(ngModel)]="loginData.pwd"
+          #pwd="ngModel"
+          name="pwd"
+          type="password"
+          required           MIGHT WANNA ADD A "REMEMBER-ME" CHECKBOX HERE
+          class="input"
+          type="password"
+          placeholder="Mot de passe"
+        />
+      </div> -->
+
+      <div class="container-form-btn">
+        <ion-button
+        [disabled]="!loginForm.valid"
+        (click)="login()"
+        class="form-btn"
+        size="large">
+        Se connecter
+      </ion-button>
+      </div>
+
+      <div class="noAccount">
+        <p class="login">Pas de compte ? <a>Créez en un</a></p>
+      </div>
+    </form>
+  </div>
 </ion-content>
