@@ -23,12 +23,20 @@ export class FetcherService {
     return this.http.get(apiEndpoint + 'saloon/viewclient?sgi=' + clientSGI);
   }
 
+  getClientIdentity(clientSGI): Observable<any> {
+    return this.http.get(apiEndpoint + 'client/identify?sgi=' + clientSGI);
+  }
+
   getClientInfo(clientSGI): Observable<any> {
     return this.http.get(apiEndpoint + 'client/info?sgi=' + clientSGI);
   }
 
   getClientsGnaws(clientSGI): Observable<any> {
     return this.http.get(apiEndpoint + 'client/gnaws?sgi=' + clientSGI);
+  }
+
+  getSaloonIdentity(saloonSGI): Observable<any> {
+    return this.http.get(apiEndpoint + 'saloon/identify?sgi=' + saloonSGI);
   }
 
   getSaloonInfo(saloonSGI): Observable<any> {

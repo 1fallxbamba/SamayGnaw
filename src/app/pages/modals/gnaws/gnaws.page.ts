@@ -29,16 +29,16 @@ export class GnawsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.displayType === 'client') {
-      this.displayClientsGnaws();
-    } else {
-      this.storer.getUserSGI().then((sgi) => {
-        this.displaySaloonsGnaws(sgi);
-      });
-    }
+    this.storer.getUserSGI().then((val) => {
+      if (this.displayType === 'client') {
+        this.displayClientsGnaws(val);
+      } else {
+        this.displaySaloonsGnaws(val);
+      }
+    });
   }
 
-  async displayClientsGnaws() { // take care of sgi
+  async displayClientsGnaws(sgi: string) {
 
     const load = await this.loader.create({
       spinner: 'circular',
@@ -47,7 +47,7 @@ export class GnawsPage implements OnInit {
 
     load.present().then(() => {
 
-      this.fetcher.getClientsGnaws('SGC4-187').subscribe((result) => {
+      this.fetcher.getClientsGnaws(sgi).subscribe((result) => {
 
         load.dismiss();
 
@@ -74,7 +74,7 @@ export class GnawsPage implements OnInit {
 
   }
 
-  async displaySaloonsGnaws(saloonSGI: string) {
+  async displaySaloonsGnaws(sgi: string) {
 
     const load = await this.loader.create({
       spinner: 'circular',
@@ -83,7 +83,7 @@ export class GnawsPage implements OnInit {
 
     load.present().then(() => {
 
-      this.fetcher.getSaloonsGnaws(saloonSGI).subscribe((result) => {
+      this.fetcher.getSaloonsGnaws(sgi).subscribe((result) => {
 
         load.dismiss().then(() => {
 
@@ -91,7 +91,7 @@ export class GnawsPage implements OnInit {
             this.saloonsGnaws = JSON.parse(result.DATA).GNAWS;
             this.clientsNames = JSON.parse(result.DATA).NAMES;
           } else if (result.CODE === 'NGF') {
-            this.notify('Aucune donnée', 'Aucun gnaw n\'a été trouvé.');
+            this.notify('Aucune donnée', 'Aucun gnaw n\'a été trouvé. \n Veuillez en ajouter dans votre menu principal');
           } else {
             this.notify('Erreur innatendue', 'Une erreur est survenue lors de la recupération de vos gnaws, veuillez réessayer');
           }

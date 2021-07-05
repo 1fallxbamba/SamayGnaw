@@ -25,7 +25,10 @@ import { MeasurementsPageModule } from './pages/modals/measurements/measurements
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__samaygnawLite',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

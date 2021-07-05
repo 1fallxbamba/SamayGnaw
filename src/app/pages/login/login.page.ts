@@ -15,7 +15,9 @@ import { StorageService } from '../../services/storage.service';
 })
 export class LoginPage implements OnInit {
 
-  loginData: any = { sgi: '', pwd: ''};
+  loginData: any = { sgi: '', pwd: '' };
+
+  savedSGI: string;
 
 
   constructor(private auth: AuthService,
@@ -37,26 +39,28 @@ export class LoginPage implements OnInit {
     load.present().then(() => {
 
       this.auth.logUserIn(this.loginData).subscribe((response) => {
+        load.dismiss();
         if (response.CODE === 'USA') {
-          load.dismiss();
           this.storer.getUserSGI().then((val) => {
-            if ( val === undefined || val === null ) {
+            if (val === undefined || val === null) {
               this.storer.setUserSGI(this.loginData.sgi).then(() => {
                 this.router.navigate(['saloon']);
               });
             } else {
-              this.router.navigate(['saloon']);
+              if (val !== this.loginData.sgi) {
+                this.notify('Alerte de sécurité', `Le SGI que vous avez entré n\'est pas celui enregistré sur votre appareil.
+                Pour des raisons de sécurité, nous n\'autorisons pas la connexion sur un autre appareil que le votre`);
+              } else {
+                this.router.navigate(['saloon']);
+              }
             }
           });
 
         } else if (response.CODE === 'WPWD') {
-          load.dismiss();
           this.notify('Mot de passe incorrect', 'Le mot de passe que vous avez entré est incorrect, veuillez réessayer.');
         } else if (response.CODE === 'UDNE') {
-          load.dismiss();
           this.notify('Utilisateur inexistant', 'Le SGI que vous avez renseigné n\'existe pas.');
         } else {
-          load.dismiss();
           this.notify('Erreur innatendue', 'Une erreur est survenue lors de l\'authentification, veuillez réessayer');
         }
       },

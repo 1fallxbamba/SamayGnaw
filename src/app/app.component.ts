@@ -13,17 +13,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.storer.getUserProfile().then((profile) => {
+    this.storer.getUserProfile().then((profile) => {
 
-    //   if (profile === 'saloon') {
-    //     this.router.navigate(['login']);
-    //   } else if (profile === 'client') {
-    //     this.router.navigate(['client']);
-    //   } else {
-    //     this.router.navigate(['home']);
-    //   }
+      if (profile === 'saloon') {
+        this.router.navigate(['login']);
+      } else if (profile === 'client') {
+        this.router.navigate(['client']);
+      } else {
+        this.router.navigate(['home']);
+      }
 
-    // });
+    });
 
   }
 

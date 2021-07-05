@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 
 import { FetcherService } from '../../../services/fetcher.service';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-measurements',
@@ -16,15 +17,18 @@ export class MeasurementsPage implements OnInit {
 
   constructor(
     private fetcher: FetcherService,
+    private storer: StorageService,
     public modal: ModalController,
     public alerter: AlertController,
     public loader: LoadingController) { }
 
   ngOnInit() {
-    this.displayMeasurements();
+    this.storer.getUserSGI().then((val) => {
+      this.displayMeasurements(val);
+    });
   }
 
-async displayMeasurements() {
+  async displayMeasurements(sgi: string) {
 
     const load = await this.loader.create({
       spinner: 'circular',
@@ -33,7 +37,7 @@ async displayMeasurements() {
 
     load.present().then(() => {
 
-      this.fetcher.getMeasurements('SGC4-187').subscribe((result) => {
+      this.fetcher.getMeasurements(sgi).subscribe((result) => {
         if (result.CODE === 'MFS') {
           this.measurements = result.DATA;
           load.dismiss();

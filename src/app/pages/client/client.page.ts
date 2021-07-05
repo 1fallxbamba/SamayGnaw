@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { FetcherService } from '../../services/fetcher.service';
+import { StorageService } from '../../services/storage.service';
 
 import { MeasurementsPage } from '../modals/measurements/measurements.page';
 import { GnawsPage } from '../modals/gnaws/gnaws.page';
@@ -18,10 +19,15 @@ export class ClientPage implements OnInit {
 
   clientInfo = { name: '', saloonName: '', saloonPhone: 0 };
 
-  constructor(private fetcher: FetcherService, public modal: ModalController) { }
+  constructor(
+    public storer: StorageService,
+    private fetcher: FetcherService,
+    public modal: ModalController) { }
 
   ngOnInit() {
-    this.retrieveInfo();
+    this.storer.getUserSGI().then((val) => {
+      this.retrieveInfo(val);
+    });
   }
 
   async showMeasurementsModal() {
@@ -45,8 +51,8 @@ export class ClientPage implements OnInit {
     return await modal.present();
   }
 
-  retrieveInfo() {
-    this.fetcher.getClientInfo('SGC4-187').subscribe((result) => {
+  retrieveInfo(sgi) {
+    this.fetcher.getClientInfo(sgi).subscribe((result) => {
       this.clientInfo.name = result.NAME;
       this.clientInfo.saloonName = result.SALOONNAME;
       this.clientInfo.saloonPhone = result.SALOONPHONE;

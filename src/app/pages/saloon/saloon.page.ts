@@ -49,7 +49,7 @@ export class SaloonPage implements OnInit {
 
     },
       err => {
-        //
+        // to handle later
       });
   }
 
