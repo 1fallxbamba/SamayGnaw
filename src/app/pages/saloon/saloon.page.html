@@ -29,7 +29,7 @@
     </ion-avatar>
 			<ion-label>
 				<p>Bienvenue,</p>
-				<h3>Athj Couture</h3>
+				<h3> {{saloonInfo.name}} </h3>
 			</ion-label>
 
 	</ion-item>
@@ -51,8 +51,8 @@
           </ion-card-header>
           <ion-card-content class="ion-text-left">
             <ion-card-title class="ion-margin-bottom">Gnaws en cours</ion-card-title>
-            <ion-card-subtitle class="ion-text-right">13/50</ion-card-subtitle>
-            <ion-progress-bar value="{{13/50}}"></ion-progress-bar>
+            <ion-card-subtitle class="ion-text-right"> {{saloonInfo.ongoing}}/{{saloonInfo.totalGnaws}} </ion-card-subtitle>
+            <ion-progress-bar value="{{saloonInfo.finished/saloonInfo.totalGnaws}}"></ion-progress-bar>
           </ion-card-content>
         </ion-card>
       </ion-slide>
@@ -68,8 +68,8 @@
           </ion-card-header>
           <ion-card-content class="ion-text-left">
             <ion-card-title class="ion-margin-bottom">Gnaws terminés</ion-card-title>
-            <ion-card-subtitle class="ion-text-right">37/50</ion-card-subtitle>
-            <ion-progress-bar value="{{37/50}}"></ion-progress-bar>
+            <ion-card-subtitle class="ion-text-right">{{saloonInfo.finished}}/{{saloonInfo.totalGnaws}}</ion-card-subtitle>
+            <ion-progress-bar value="{{saloonInfo.finished/saloonInfo.totalGnaws}}"></ion-progress-bar>
           </ion-card-content>
         </ion-card>
       </ion-slide>
@@ -161,18 +161,18 @@
   </ion-header>
   <ion-content style="--background: #fafafa !important;" id="main" >
 
-      <ion-button routerLink="add-client" expand="block"  >
+      <ion-button routerLink="add-client" (click)="closeMenu()" expand="block"  >
         <ion-icon name="person-add-outline"></ion-icon>
         Nouveau client
        </ion-button>
 
 
-       <ion-button routerLink="add-gnaw"  expand="block" >
+       <ion-button (click)="showClientsModal('toAddGnaw')"  expand="block" >
         <ion-icon name="add-circle-outline"></ion-icon>
         Nouveau gnaw
        </ion-button>
 
-       <ion-button (click)="showClientsModal()" expand="block" >
+       <ion-button (click)="showClientsModal('clients')" expand="block" >
         <ion-icon name="people-outline"></ion-icon>
         Mes clients
        </ion-button>

@@ -9,7 +9,7 @@
   <div class="ion-text-center userInfo" >
     <!-- <img src="../../../assets/profile_image.png"> -->
     <h1 style="font-size:1.4em" no-margin>Bienvenue, </h1>
-      <h1 style="margin-top: 5px; font-size: 31px; color: #023d69;"> client Name </h1>
+      <h1 style="margin-top: 5px; font-size: 31px; color: #023d69;"> {{clientInfo.name}} </h1>
   </div>
 
   <ion-grid>
@@ -19,7 +19,7 @@
         <ion-card class="ion-text-center ion-padding" >
           <ion-icon name="person-outline"></ion-icon>
           <p> Vous êtes client du salon</p>
-          <h1  style="font-size: 30px;">SaloonName </h1>
+          <h1  style="font-size: 30px;"> {{clientInfo.saloonName}} </h1>
         </ion-card>
       </ion-col>
     </ion-row>

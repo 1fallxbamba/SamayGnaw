@@ -29,11 +29,12 @@ import { MeasurementsPageModule } from './pages/modals/measurements/measurements
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    GnawsPageModule, MeasurementsPageModule],
+    ReactiveFormsModule],
   providers: [
     ScreenOrientation,
     NativeStorage,
+    GnawsPageModule,
+    MeasurementsPageModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

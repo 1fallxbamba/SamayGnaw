@@ -11,26 +11,55 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-card *ngFor="let c of clients">
-      <!-- <ion-avatar slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"> cd
-      </ion-avatar> -->
-      <ion-card-title class="clientName">
-        {{c.prenom}} {{c.nom}}
-      </ion-card-title>
-      <ion-card-content>
-        <p>SGI : <span>{{c.sgi}}</span></p>
-        <p>
-          <ion-icon name="call-outline"></ion-icon> : <span>{{c.tel}}</span>
-        </p>
-      </ion-card-content>
+  <div *ngIf="toAddGnaws === false">
+    <ion-list>
+      <ion-card *ngFor="let c of clients">
+        <!-- <ion-avatar slot="start">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"> cd
+        </ion-avatar> -->
+        <ion-card-title class="clientName">
+          {{c.prenom}} {{c.nom}}
+        </ion-card-title>
+        <ion-card-content>
+          <p>SGI : <span>{{c.sgi}}</span></p>
+          <p>
+            <ion-icon name="call-outline"></ion-icon> : <span>{{c.tel}}</span>
+          </p>
+        </ion-card-content>
 
-      <div class="more">
-        <ion-button>
-          <ion-icon name="information-outline"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-card>
-  </ion-list>
+        <div class="more">
+          <ion-button size="small">
+            <ion-icon name="information-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <div *ngIf="toAddGnaws === true">
+    <ion-list>
+      <h4 class="infoLabel">Choisir un client</h4>
+      <ion-card *ngFor="let c of clients">
+        <!-- <ion-avatar slot="start">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"> cd
+        </ion-avatar> -->
+        <ion-card-title class="clientName">
+          {{c.prenom}} {{c.nom}}
+        </ion-card-title>
+        <ion-card-content>
+          <p>SGI : <span>{{c.sgi}}</span></p>
+          <p>
+            <ion-icon name="call-outline"></ion-icon> : <span>{{c.tel}}</span>
+          </p>
+        </ion-card-content>
+
+        <div class="more">
+          <ion-button (click)="goToAddGnaw(c.sgi)" size="small" >
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card>
+    </ion-list>
+  </div>
+
 </ion-content>

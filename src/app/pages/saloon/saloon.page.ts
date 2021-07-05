@@ -22,22 +22,48 @@ export class SaloonPage implements OnInit {
     slidesPerView: 1.4
   };
 
+  saloonInfo = { name: '', totalGnaws: 0, ongoing: 0, finished: 0 };
+
   constructor(
+    private fetcher: FetcherService,
+    private storer: StorageService,
     public loader: LoadingController,
     public modal: ModalController,
     public menu: MenuController,
-    public router: Router,
-    private storer: StorageService) { }
+    public router: Router) { }
 
   ngOnInit() {
+    this.storer.getUserSGI().then((val) => {
+      this.retriveInfo(val);
+    });
 
+  }
+
+  retriveInfo(sgi) {
+    this.fetcher.getSaloonInfo(sgi).subscribe((result) => {
+
+      this.saloonInfo.name = result.NAME;
+      this.saloonInfo.totalGnaws = result.GNAWS;
+      this.saloonInfo.ongoing = result.ONGOING;
+      this.saloonInfo.finished = result.FINISHED;
+
+    },
+      err => {
+        //
+      });
   }
 
   openMenu() {
     this.menu.open('sidem');
   }
 
+  closeMenu() {
+    this.menu.close('sidem');
+  }
+
   async showGnawsModal() {
+
+    this.closeMenu();
 
     const modal = await this.modal.create({
       component: GnawsPage,
@@ -49,16 +75,21 @@ export class SaloonPage implements OnInit {
     return await modal.present();
   }
 
-  async showClientsModal() {
+  async showClientsModal(dType: string) {
+
+    this.closeMenu();
 
     const modal = await this.modal.create({
-      component: ClientsPage
+      component: ClientsPage,
+      componentProps: {
+        displayType: dType
+      }
     });
 
     return await modal.present();
   }
 
-  async logout() { // add a fake loader
+  async logout() {
 
     const load = await this.loader.create({
       spinner: 'circular',

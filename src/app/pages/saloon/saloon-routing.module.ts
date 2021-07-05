@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('../addclient/addclient.module').then(m => m.AddclientPageModule)
   },
   {
-    path: 'add-gnaw',
+    path: 'add-gnaw/:sgi',
     loadChildren: () => import('../addgnaw/addgnaw.module').then(m => m.AddgnawPageModule)
   },
   {

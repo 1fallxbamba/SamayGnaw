@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertController, LoadingController } from '@ionic/angular';
 
@@ -13,24 +13,20 @@ import { StorageService } from '../../services/storage.service';
 })
 export class AddgnawPage implements OnInit {
 
-  gnawData = { prop: 'SGC', saloon: '', dateL: '', price: 0, avance: 0, type: '' };
-
-  invalidSGI = false;
+  gnawData = { prop: '', saloon: '', dateL: '', price: 0, avance: 0, type: '' };
 
   constructor(
     private poster: PosterService,
     private storer: StorageService,
     public alerter: AlertController,
     public loader: LoadingController,
-    public router: Router) { }
+    public router: Router,
+    public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.validateSGI();
-    const alrt = document.getElementById('alrt');
-    alrt.style.display = 'none';
-
     this.storer.getUserSGI().then((sgi) => {
       this.gnawData.saloon = sgi;
+      this.gnawData.prop = this.route.snapshot.params.sgi;
     });
   }
 
@@ -84,18 +80,4 @@ export class AddgnawPage implements OnInit {
     await alert.present();
   }
 
-  validateSGI() {
-    if (!this.gnawData.prop.includes('SGC') || this.gnawData.prop.length <= 5) {
-      this.invalidSGI = true;
-
-      const alrt = document.getElementById('alrt');
-      alrt.style.display = 'block';
-
-    } else {
-      this.invalidSGI = false;
-
-      const alrt = document.getElementById('alrt');
-      alrt.style.display = 'none';
-    }
-  }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 
@@ -12,18 +14,29 @@ import { StorageService } from '../../../services/storage.service';
 })
 export class ClientsPage implements OnInit {
 
+  @Input() displayType: string;
+
   clients = [];
+
+  toAddGnaws = false;
 
   constructor(
     private fetcher: FetcherService,
     private storer: StorageService,
     public modal: ModalController,
     public alerter: AlertController,
-    public loader: LoadingController) { }
+    public loader: LoadingController,
+    public router: Router) { }
 
   ngOnInit() {
     this.storer.getUserSGI().then((sgi) => {
-      this.displayClients(sgi);
+      this.displayClients(sgi).then(() => {
+        if (this.displayType === 'toAddGnaw') {
+          this.toAddGnaws = true;
+        } else {
+          this.toAddGnaws = false;
+        }
+      });
     });
   }
 
@@ -80,6 +93,11 @@ export class ClientsPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  goToAddGnaw(clientSGI){
+    this.goBack();
+    this.router.navigate(['saloon/add-gnaw/' + clientSGI]);
   }
 
 }
